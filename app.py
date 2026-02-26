@@ -135,6 +135,6 @@ if st.button("Predict Risk"):
     st.write(f"Estimated probability of diabetes risk: **{prob:.2%}**")
 
     if prediction == 1:
-        st.error("⚠️ High Risk of Diabetes")
+        st.error("High Risk of Diabetes")
     else:
-        st.success("✅ Low Risk of Diabetes")
+        st.success("Low Risk of Diabetes")
