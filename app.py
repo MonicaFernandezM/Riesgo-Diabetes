@@ -37,7 +37,31 @@ CholCheck = st.radio("Cholesterol Check in last 5 years", [0, 1], format_func=la
 
 st.subheader("Body & Lifestyle")
 
-BMI = st.number_input("BMI (Body Mass Index)", min_value=10.0, max_value=60.0, value=25.0)
+bmi_mode = st.radio(
+    "BMI Input Method",
+    ["Enter BMI manually", "Calculate from height and weight"])
+
+if bmi_mode == "Enter BMI manually":
+    BMI = st.number_input("BMI (Body Mass Index)", min_value=10.0, max_value=60.0, value=25.0)
+else:
+    weight = st.number_input("Weight (kg)", min_value=30.0, max_value=250.0, value=70.0)
+    height = st.number_input("Height (cm)", min_value=120.0, max_value=220.0, value=170.0)
+
+    height_m = height / 100
+    BMI = weight / (height_m ** 2)
+
+    st.write(f"Calculated BMI: **{BMI:.2f}**")
+
+st.markdown("### BMI Category")
+if BMI < 18.5:
+    st.info("Underweight")
+elif BMI < 25:
+    st.success("Normal weight")
+elif BMI < 30:
+    st.warning("Overweight")
+else:
+    st.error("Obese")
+
 Smoker = st.radio("Smoker (100+ cigarettes lifetime)", [0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
 PhysActivity = st.radio("Physical Activity (last 30 days)", [0, 1], format_func=lambda x: "No" if x == 0 else "Yes")
 
