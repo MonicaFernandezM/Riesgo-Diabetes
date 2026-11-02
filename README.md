@@ -54,7 +54,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 4. Reproducir el análisis y entrenamiento:
-   Abrir y ejecutar el notebook **01_data_cleaning_diabetes.ipynb** en Jupyter Notebool o VS Code.
+   Abrir y ejecutar el notebook *01_data_cleaning_diabetes.ipynb* en Jupyter Notebool o VS Code.
 
 ## Uso 
 * Abrir el notebook del proyecto.
