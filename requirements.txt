@@ -4,3 +4,6 @@ scikit-learn
 scipy
 pandas
 numpy
+xgboost
+lightgbm
+imbalanced-learn
