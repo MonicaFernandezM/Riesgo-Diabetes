@@ -37,7 +37,7 @@ Construir un modelo de clasificación que:
 
 ## Demo en Vivo
 Puedes interactuar directamente con la herramienta sin necesidad de instalar nada en tu equipo:
-👉 **[Acceder a la aplicación en Streamlit Cloud](https://monicafernandezm-riesgo-diabetes-app-qcxi5r.streamlit.app/)**
+**[Acceder a la aplicación en Streamlit Cloud](https://monicafernandezm-riesgo-diabetes-app-qcxi5r.streamlit.app/)**
 
 ## Instalación
 1. Clonar el repositorio:
