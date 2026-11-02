@@ -70,9 +70,10 @@ El análisis utiliza el dataset [CDC Diabetes Health Indicators](https://www.kag
 
 ### Variable objetivo:
 * Risk_Group -> Creada apartir de Diabetes_012
-| Variable | Descripción | Valores |
-|----------|-------------|---------|
-| `Risk_Group` | Nivel de riesgo estimado (creada a partir de `Diabetes_012`) | `0` = Bajo riesgo \| `1` = Alto riesgo (~17% del total) |
+| Variable | Descripción | Valor | Significado |
+|----------|-------------|-------|-------------|
+| `Risk_Group` | Nivel de riesgo estimado (creada a partir de `Diabetes_012`) | `0` | Bajo riesgo |
+| `Risk_Group` | | `1` | Alto riesgo (~17% del total, dataset desbalanceado) |
 
 Aproximadamente el 17% de los casos corresponden a alto riesgo, lo que implica un dataset desbalanceado.
 
