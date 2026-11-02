@@ -1,5 +1,7 @@
 # Predicción de Riesgo de Diabetes
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://monicafernandezm-riesgo-diabetes-app-qcxi5r.streamlit.app/)
+
 ## Description 
 Este proyecto desarrolla un modelo de Machine Learning capaz de estimar el riesgo de diabetes a partir de variables médicas y de estilo de vida.
 
@@ -9,6 +11,7 @@ El objetivo es crear una herramienta de apoyo que permita identificar personas c
 
 ## Tabla de Contenidos
 - [Objectivo](#objetivo)
+- [Demo en Vivo](#demo-en-vivo)
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Dataset](#dataset)
@@ -32,16 +35,26 @@ Construir un modelo de clasificación que:
 - Mantenga un equilibrio adecuado con la precisión.
 - Ofrezca resultados interpretables.
 
+## Demo en Vivo
+Puedes interactuar directamente con la herramienta sin necesidad de instalar nada en tu equipo:
+👉 **[Acceder a la aplicación en Streamlit Cloud](https://monicafernandezm-riesgo-diabetes-app-qcxi5r.streamlit.app/)**
+
 ## Instalación
 1. Clonar el repositorio:
    ```bash
    git clone [https://github.com/MonicaFernandezM/Riesgo-Diabetes](https://github.com/MonicaFernandezM/Riesgo-Diabetes)
    ```
-2. Abrir el proyecto en Jupyter Notebook.
-
-3. Ejecutar el notebook principal para reproducir el análisis.
-
-No es necesario instalar dependencias adicionales si ya se cuenta con un etorno estándar de ánalisis de datos en Python. 
+2. Crear y activar un entorno virtual:
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+3. Instalar las dependencias del proyecto:
+```bah
+pip install -r requirements.txt
+```
+4. Reproducir el análisis y entrenamiento:
+   Abrir y ejecutar el notebook **01_data_cleaning_diabetes.ipynb** en Jupyter Notebool o VS Code.
 
 ## Uso 
 * Abrir el notebook del proyecto.
