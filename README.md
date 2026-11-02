@@ -2,7 +2,7 @@
 
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://monicafernandezm-riesgo-diabetes-app-qcxi5r.streamlit.app/)
 
-## Description 
+## Descripción 
 Este proyecto desarrolla un modelo de Machine Learning capaz de estimar el riesgo de diabetes a partir de variables médicas y de estilo de vida.
 
 El objetivo es crear una herramienta de apoyo que permita identificar personas con mayor probabilidad de riesgo de forma temprana, facilitando acciones preventivas.
@@ -10,19 +10,20 @@ El objetivo es crear una herramienta de apoyo que permita identificar personas c
 > *Este modelo no sustituye un diagnóstico médico, sino que actúa como sistema de evaluación preliminar.*
 
 ## Tabla de Contenidos
-- [Objectivo](#objetivo)
+- [Descripción](#descripción)
+- [Objetivo](#objetivo)
 - [Demo en Vivo](#demo-en-vivo)
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Dataset](#dataset)
-- [Preprocesamiento](#preprocesamiento)
+- [Preprocesamiento de Datos](#preprocesamiento-de-datos)
 - [Modelado](#modelado)
-- [Optimización del Modelo](#optimizacion-del-modelo)
-- [Metricas de Evaluación](#metricas-de-evaluacion)
-- [Ajuste de punto de decisión](#ajuste-de-punto-de-decisión)
+- [Optimización del Modelo](#optimización-del-modelo)
+- [Métricas de Evaluación](#métricas-de-evaluación)
+- [Ajuste de Punto de Decisión](#ajuste-de-punto-de-decisión)
 - [Resultados](#resultados)
 - [Implementación](#implementación)
-- [Aplicación en el Mundo Real](#aplicaion-en-el-mundo-real)
+- [Aplicación en el Mundo Real](#aplicación-en-el-mundo-real)
 - [Limitaciones](#limitaciones)
 - [Trabajo Futuro](#trabajo-futuro)
 - [Contribución](#contribución)
@@ -42,7 +43,7 @@ Puedes interactuar directamente con la herramienta sin necesidad de instalar nad
 ## Instalación
 1. Clonar el repositorio:
    ```bash
-   git clone [https://github.com/MonicaFernandezM/Riesgo-Diabetes](https://github.com/MonicaFernandezM/Riesgo-Diabetes)
+   git clone https://github.com/MonicaFernandezM/Riesgo-Diabetes.git
    ```
 2. Crear y activar un entorno virtual:
 ```bash
@@ -50,11 +51,11 @@ python3 -m venv .venv
 source .venv/bin/activate
 ```
 3. Instalar las dependencias del proyecto:
-```bah
+```bash
 pip install -r requirements.txt
 ```
 4. Reproducir el análisis y entrenamiento:
-   Abrir y ejecutar el notebook *01_data_cleaning_diabetes.ipynb* en Jupyter Notebool o VS Code.
+   Abrir y ejecutar el notebook *01_data_cleaning_diabetes.ipynb* en Jupyter Notebook o VS Code.
 
 ## Uso 
 * Abrir el notebook del proyecto.
@@ -98,7 +99,7 @@ Aproximadamente el 17% de los casos corresponden a alto riesgo, lo que implica u
 
 ## Modelado
 
-SSe evaluaron diferentes modelos de clasificación y se seleccionó: **Gradient Boosting Classifier**
+Se evaluaron diferentes modelos de clasificación y se seleccionó: **Gradient Boosting Classifier**
 
 Motivos de la elección:
 - Alta capacidad para distinguir perfiles de riesgo complejos.
@@ -113,7 +114,7 @@ Para mejorar el rendimiento se aplicaron:
 * Métrica principal de optimización: ROC-AUC
 
  
-# Métricas de Evaluación
+## Métricas de Evaluación
 
 El modelo fue evaluado utilizando métricas clave adaptadas al contexto médico:
 - Recall (Sensibilidad): ¿Cuántos casos reales de diabetes es capaz de detectar? (Métrica priorizada).
@@ -123,7 +124,7 @@ El modelo fue evaluado utilizando métricas clave adaptadas al contexto médico:
 
 Dado el contexto médico, se priorizó el Recall para maximizar la detección temprana.
 
-## Ajuste del Punto de Decisión
+## Ajuste de Punto de Decisión
 
 El modelo genera probabilidades continuas de riesgo. En lugar de utilizar el umbral estándar de 0.5, se optimizó el punto de decisión para maximizar el F1-score, logrando un equilibrio óptimo adaptado a la escasez de falsos negativos críticos.
 
@@ -166,8 +167,6 @@ El sistema diseñado puede desempeñar un rol útil como:
 - Implementar una monitorización continua del rendimiento del modelo en producción.
 
 ## Contribución 
-
-Las contribuciones son bienvenidas.
 
 Las contribuciones son bienvenidas. Si deseas mejorar el análisis o añadir visualizaciones:
 1. Haz un fork del repositorio.
