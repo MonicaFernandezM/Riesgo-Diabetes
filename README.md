@@ -5,7 +5,7 @@ Este proyecto desarrolla un modelo de Machine Learning capaz de estimar el riesg
 
 El objetivo es crear una herramienta de apoyo que permita identificar personas con mayor probabilidad de riesgo de forma temprana, facilitando acciones preventivas.
 
-Este modelo no sustituye un diagnóstico médico!, sino que actúa como sistema de evaluación preliminar.
+> *Este modelo no sustituye un diagnóstico médico, sino que actúa como sistema de evaluación preliminar.*
 
 ## Tabla de Contenidos
 - [Objectivo](#objetivo)
@@ -14,27 +14,29 @@ Este modelo no sustituye un diagnóstico médico!, sino que actúa como sistema 
 - [Dataset](#dataset)
 - [Preprocesamiento](#preprocesamiento)
 - [Modelado](#modelado)
-- [Optimización](#optimizacion)
-- [Metricas-de-Evaluación](#metricas-de-evaluacion)
-- [Ajuste-de-punto-de-decisión](#ajuste-de-punto-de-decisión)
+- [Optimización del Modelo](#optimizacion-del-modelo)
+- [Metricas de Evaluación](#metricas-de-evaluacion)
+- [Ajuste de punto de decisión](#ajuste-de-punto-de-decisión)
 - [Resultados](#resultados)
 - [Implementación](#implementación)
-- [Aplicación-en-el-Mundo-Real](#aplicaion-en-el-mundo-real)
+- [Aplicación en el Mundo Real](#aplicaion-en-el-mundo-real)
 - [Limitaciones](#limitaciones)
-- [Trabajo-Futuro](#trabajo-futuro)
+- [Trabajo Futuro](#trabajo-futuro)
 - [Contribución](#contribución)
+- [Autora](#autora)
 
 ## Objetivo
 Construir un modelo de clasificación que:
-* Prediga el riesgo de diabetes
-* Maximice la detección de casos reales (priorizando Recall)
-* Mantenga un equilibrio con la precisión
-* Ofrezca resultados interpretables
+- Prediga el riesgo de diabetes.
+- Maximice la detección de casos reales (priorizando *Recall*).
+- Mantenga un equilibrio adecuado con la precisión.
+- Ofrezca resultados interpretables.
 
 ## Instalación
-1. Clonar el repositorio: https://github.com/MonicaFernandezM/Riesgo-Diabetes
-   git clone 
-
+1. Clonar el repositorio:
+   ```bash
+   git clone [https://github.com/MonicaFernandezM/Riesgo-Diabetes](https://github.com/MonicaFernandezM/Riesgo-Diabetes)
+   ```
 2. Abrir el proyecto en Jupyter Notebook.
 
 3. Ejecutar el notebook principal para reproducir el análisis.
@@ -50,119 +52,116 @@ El análisis está organizado por secciones para facilitar la comprensión del f
 
 ## Dataset
 
-Pulsa en [CDC Diabetes Health Indicators](https://www.kaggle.com/datasets/abdelazizsami/cdc-diabetes-health-indicators)para descargarlo en tu equipo.
+El análisis utiliza el dataset [CDC Diabetes Health Indicators](https://www.kaggle.com/datasets/abdelazizsami/cdc-diabetes-health-indicators), el cual contiene 253.680 registros con información demográfica y médica.
 
-El dataset contiene 253.680 registros con información demográfica y médica.
+### Variables principales:
+| Variable | Categoría | Descripción |
+|----------|-----------|-------------|
+| `HighBP` | Salud | Presión arterial alta (`0`: No, `1`: Sí) |
+| `HighChol` | Salud | Colesterol alto (`0`: No, `1`: Sí) |
+| `BMI` | Salud | Índice de Masa Corporal (Body Mass Index) |
+| `Smoker` | Estilo de vida | Tabaquismo (haber fumado al menos 100 cigarrillos) |
+| `PhysActivity` | Estilo de vida | Actividad física en los últimos 30 días |
+| `GenHlth` | Salud | Autopercepción del estado de salud general (escala 1 a 5) |
+| `Age` | Demográfica | Rango de edad del paciente (categorizado de 1 a 13) |
+| `Education` | Demográfica | Nivel educativo alcanzado (escala 1 a 6) |
+| `Income` | Socioeconómica | Nivel de ingresos del hogar (escala 1 a 8) |
+| `HeartDiseaseorAttack` | Historial médico | Historial de enfermedad coronaria o infarto |
 
-Variables principales:
-* Presión arterial alta
-* Colesterol alto
-* Índice de Masa Corporal (BMI)
-* Tabaquismo
-* Actividad física
-* Salud general
-* Edad
-* Nivel educativo
-* Nivel de ingresos
-* Historial cardiovascular
-
-Variable objetivo:
+### Variable objetivo:
 * Risk_Group -> Creada apartir de Diabetes_012
-* 0 → Bajo riesgo
-* 1 → Alto riesgo
+| Variable | Descripción | Valores |
+|----------|-------------|---------|
+| `Risk_Group` | Nivel de riesgo estimado (creada a partir de `Diabetes_012`) | `0` → Bajo riesgo<br>`1` → Alto riesgo (~17% del total) |
 
 Aproximadamente el 17% de los casos corresponden a alto riesgo, lo que implica un dataset desbalanceado.
 
 ## Preprocesamiento de Datos
 
-* Eliminación de valores extremos en BMI (recorte entre percentil 1 y 99)
-* División train-test (80% entrenamiento / 20% prueba)
-* División estratificada para conservar la proporción de clases
-* Selección adecuada de variables
-* Preparación del target para clasificación binaria
+- Eliminación de valores extremos en BMI (recorte entre el percentil 1 y 99).
+- División train-test (80% entrenamiento / 20% prueba).
+- División estratificada para conservar la proporción de clases.
+- Selección adecuada de variables predictoras.
+- Preparación del target para clasificación binaria.
 
 ## Modelado
 
-Se evaluaron diferentes modelos y se seleccionó:
+SSe evaluaron diferentes modelos de clasificación y se seleccionó: **Gradient Boosting Classifier**
 
-**Gradient Boosting Classifier**
-
-Motivos:
-* Alta capacidad para distinguir perfiles de riesgo
-* Buen rendimiento en datasets desbalanceados
-* Resultados estables tras validación
+Motivos de la elección:
+- Alta capacidad para distinguir perfiles de riesgo complejos.
+- Buen rendimiento general en datasets desbalanceados.
+- Resultados estables tras el proceso de validación.
 
 ## Optimización del Modelo 
 
 Para mejorar el rendimiento se aplicaron:
 * Validación cruzada (5-fold)
-* Randomized Search para ajuste de hiperparámetros
-* Métrica principal: ROC-AUC
+* Randomized Search para el ajuste fino de hiperparámetros
+* Métrica principal de optimización: ROC-AUC
 
-Este proceso permitió seleccionar la mejor configuración del modelo.
  
-# Métricas de Evaluación 
-El modelo fue evaluado utilizando:
-* Recall → ¿Cuántos casos reales detecta?
-* Precision → Cuando predice riesgo, ¿cuántas veces acierta?
-* F1-score → Equilibrio entre precision y recall
-* ROC-AUC → Capacidad global para distinguir entre clases
+# Métricas de Evaluación
+
+El modelo fue evaluado utilizando métricas clave adaptadas al contexto médico:
+- Recall (Sensibilidad): ¿Cuántos casos reales de diabetes es capaz de detectar? (Métrica priorizada).
+- Precision: Cuando el modelo predice riesgo, ¿cuántas veces acierta?
+- F1-score: Equilibrio ponderado entre precision y recall.
+- ROC-AUC: Capacidad global del modelo para distinguir entre clases.
 
 Dado el contexto médico, se priorizó el Recall para maximizar la detección temprana.
 
 ## Ajuste del Punto de Decisión
 
-El modelo genera probabilidad de riesgo.
-
-En lugar de utilizar el umbral estándar de 0.5, se optimizó el punto de decisión para maximizar el F1-score, logrando un mejor equilibrio entre sensiblidad y precisión.
+El modelo genera probabilidades continuas de riesgo. En lugar de utilizar el umbral estándar de 0.5, se optimizó el punto de decisión para maximizar el F1-score, logrando un equilibrio óptimo adaptado a la escasez de falsos negativos críticos.
 
 ## Resultados 
 
 * ROC-AUC: ~0.81
-* Detecta aproximadamente el 66% de los casos reales
-* Mantiene un nivel controlado de falsas alarmas
+* Capacidad de detección: Detecta aproximadamente el 66% de los casos reales de riesgo.
+* Control de errores: Mantiene un nivel controlado de falsas alarmas.
 
-El modelo demuestra una buena capacidad para distinguir perfiles de riesgo en datos no vistos.
+El modelo demuestra una sólida capacidad para generalizar y distinguir perfiles de riesgo en datos no vistos.
 
 ## Implementación
 
-El modelo fue desplegado mediante Streamlit, permitiendo:
-* Introducir datos médicos y de estilo de vida
-* Calcular automáticamente el BMI (opcional)
-* Obtener la probabilidad estimada de riesgo
-* Visualizar una interpretación clara del resultado
+El modelo fue desplegado mediante una aplicación interactiva en Streamlit, permitiendo:
+- Introducir datos médicos y de estilo de vida de forma sencilla.
+- Calcular automáticamente el BMI (opcional).
+- Obtener la probabilidad estimada de riesgo de forma instantánea.
+- Visualizar una interpretación clara del resultado.
 
 ## Aplicación en el Mundo Real
 
-El sistema podría utilizarse como:
-* Herramienta de apoyo en centros de salud
-* Sistema de cribado preventivo
-* Aplicación digital de autoevaluación
-* Sistema de priorización de pacientes
+El sistema diseñado puede desempeñar un rol útil como:
+- Herramienta de apoyo en centros de salud de atención primaria.
+- Sistema de cribado preventivo rápido.
+- Aplicación digital orientada al autocuidado y autoevaluación.
+- Sistema de priorización y alerta temprana de pacientes.
 
 ## Limitaciones
 
-* Basado en datos históricos y auto-reportados
-* No incluye análisis clínicos avanzados
-* Puede generar falsos positivos o negativos
-* No sustituye diagnóstico profesional
+- Basado en datos históricos y de carácter auto-reportado.
+- No incluye analíticas clínicas avanzadas u hospitalarias directas.
+- Posibilidad latente de generar falsos positivos o falsos negativos.
+- No sustituye en ningún caso un diagnóstico médico profesional.
 
 ## Trabajo Futuro 
 
-* Incorporar más variables clínicas
-* Validación externa en nuevas poblaciones
-* Comparación con otros modelos de ensemble
-* Monitorización continua del rendimiento
+- Incorporar variables clínicas y analíticas de mayor profundidad.
+- Realizar una validación externa con nuevas poblaciones o fuentes de datos.
+- Comparar el rendimiento frente a otros modelos avanzados de Ensemble.
+- Implementar una monitorización continua del rendimiento del modelo en producción.
 
 ## Contribución 
 
 Las contribuciones son bienvenidas.
 
-Si deseas mejorar el análisis o añadir visualizaciones:
-1. Haz un fork del repositorio
-2. Crea una nueva rama 
-3. Realiza tus cambios
-4. Abre un Pull Request 
+Las contribuciones son bienvenidas. Si deseas mejorar el análisis o añadir visualizaciones:
+1. Haz un fork del repositorio.
+2. Crea una nueva rama (git checkout -b feature/mejora).
+3. Realiza tus cambios y haz commit (git commit -m 'Añadir mejora').
+4. Abre un Pull Request. 
 
 ### Autora
 Mónica María Fernández Mirás
